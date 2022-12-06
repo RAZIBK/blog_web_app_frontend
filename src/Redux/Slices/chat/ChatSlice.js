@@ -56,6 +56,7 @@ export const fetchChatsAction = createAsyncThunk(
             config
           );
           dispatch(resetChat())
+          console.log(data);
           return data;
         } catch (error) {
           if (!error?.response) {

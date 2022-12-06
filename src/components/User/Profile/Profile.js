@@ -24,8 +24,6 @@ export default function Profile() {
   const [showFolloingwModal, setFollowingShowModal] = useState(false);
   const [showFollowerswModal, setFollowersShowModal] = useState(false);
 
-
-  
   const [follow, setfollow] = useState(false);
 
   const { id } = useParams();
@@ -43,14 +41,16 @@ export default function Profile() {
     userAuth,
   } = state;
 
-  console.log();
+  useEffect(() => {
+    dispatch(fetchUserDetails(id));
+  }, []);
+
   useEffect(() => {
     dispatch(fetchUserDetails(id));
     setShowModal(false);
   }, [id, dispatch, profilePhoto, IsFollow, IsUnfollow]);
 
-  const iSLoginUser = userAuth?._id === profile?._id;
-
+  const iSLoginUser = userAuth?._id === profile?._id;                 
 
   // console.log(userAuth?._id);
   // console.log(profile?.followers);
@@ -64,7 +64,7 @@ export default function Profile() {
   // console.log(userAuth?.following.includes(id));
 
   return (
-    <container>
+    <>
       <div className=" flex overflow-hidden bg-white">
         {/* Static sidebar for desktop */}
 
@@ -122,7 +122,9 @@ export default function Profile() {
                             </span>
                           ) : (
                             <span>
-                              {profile?.followers?.some(e => e._id === userAuth?._id) ? (
+                              {profile?.followers?.some(
+                                (e) => e._id === userAuth?._id
+                              ) ? (
                                 <button
                                   onClick={() =>
                                     dispatch(unFollowUser(profile?._id))
@@ -163,14 +165,14 @@ export default function Profile() {
                           </p>
                           <p className="text-gray-900 mt-2  mb-2 ml-3">
                             {profile?.posts?.length} posts{" "}
-                            <button onClick={()=>setFollowersShowModal(true)}>
+                            <button onClick={() => setFollowersShowModal(true)}>
                               <span className="ml-5 text-bold">
-                                {profile?.followers.length} followers{" "}
+                                {profile?.followers?.length} followers{" "}
                               </span>
                             </button>
                             <button onClick={() => setFollowingShowModal(true)}>
                               <span className="ml-5">
-                                {profile?.following.length} following{" "}
+                                {profile?.following?.length} following{" "}
                               </span>
                             </button>
                           </p>
@@ -186,21 +188,21 @@ export default function Profile() {
                             
                           </div> */}
                           <FollowersList
-                  visible={showFollowerswModal}
-                  onClose={() => setFollowersShowModal(false)}
-                  Following={profile?.followers}
-                  followers={profile?.followers}
-
-                  userAuth={userAuth}
-                   />
-                  <Following
-                  visible={showFolloingwModal}
-                  onClose={() => setFollowingShowModal(false)}
-                  Following={profile?.following}
-                  followers={profile?.followers}
-                  userAuth={userAuth}
-
-                   />
+                            key={profile?.followers?._id}
+                            visible={showFollowerswModal}
+                            onClose={() => setFollowersShowModal(false)}
+                            Following={profile?.followers}
+                            followers={profile?.followers}
+                            userAuth={userAuth}
+                          />
+                          <Following
+                            key={profile?._id}
+                            visible={showFolloingwModal}
+                            onClose={() => setFollowingShowModal(false)}
+                            Following={profile?.following}
+                            followers={profile?.followers}
+                            userAuth={userAuth}
+                          />
                           <div className="pl-2 mb-4 ml-1">
                             {/* {profile?.viewedBy?.length}{" "} */}
                             <span className="text-gray-600  cursor-pointer hover:underline">
@@ -210,18 +212,19 @@ export default function Profile() {
 
                           {/* is login user */}
                           {/* Upload profile photo */}
-                          {iSLoginUser && <button
-                            // to={`/upload-profile-photo/${profile?._id}`}
-                            className="inline-flex justify-center w-48 px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
-                            onClick={() => setShowModal(true)}
-                          >
-                            <UploadIcon
-                              className="-ml-1 mr-2 h-5 w-5 text-gray-400"
-                              aria-hidden="true"
-                            />
-                            <span>Upload Photo</span>
-                          </button> }
-                          
+                          {/* {iSLoginUser && (
+                            <button
+                              // to={`/upload-profile-photo/${profile?._id}`}
+                              className="inline-flex justify-center w-48 px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                              onClick={() => setShowModal(true)}
+                            >
+                              <UploadIcon
+                                className="-ml-1 mr-2 h-5 w-5 text-gray-400"
+                                aria-hidden="true"
+                              />
+                              <span>Upload Photo</span>
+                            </button>
+                          )} */}
 
                           {/*   
       <div className="w-screen h-screen flex items-center justify-center">
@@ -240,27 +243,10 @@ export default function Profile() {
 
                         {/* Update Profile */}
 
-                        {/* Send Mail */}
-                        {/* <Link to={""}
-                            // to={`/send-mail?email=${profile?.email}`}
-                            className="inline-flex justify-center bg-indigo-900 px-4 py-2 border border-yellow-700 shadow-sm text-sm font-medium rounded-md text-gray-700  hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
-                          >
-                            <MailIcon
-                              className="-ml-1 mr-2 h-5 w-5 text-gray-200"
-                              aria-hidden="true"
-                            />
-                            <span className="text-base mr-2  text-bold text-yellow-500">
-                              Send Message
-                            </span>
-                          </Link> */}
-                        {/* </div> */}
+                      
                       </div>
                     </div>
-                    {/* <div className="hidden sm:block 2xl:hidden mt-6 min-w-0 flex-1">
-                      <h1 className="text-2xl font-bold text-gray-900 truncate">
-                        {profile?.lastName}Last Name
-                      </h1>
-                    </div> */}
+                 
                   </div>
                 </div>
                 {/* Tabs */}
@@ -279,7 +265,7 @@ export default function Profile() {
                     {profile?.posts?.length <= 0 ? (
                       <h2 className="text-center">No Post Found</h2>
                     ) : (
-                      profile?.posts.map((post) => (
+                      profile?.posts?.map((post) => (
                         <div className="flex flex-wrap mx-1  -mx-3 mt-3  lg:mb-6 border border-gray-400  p-1">
                           <div className="mb-2 mt-2 md:w-2/6 sm:w-1/4  w-full lg:w-1/5 px-3">
                             <Link to={""}>
@@ -322,6 +308,6 @@ export default function Profile() {
           </div>
         </div>
       </div>
-    </container>
+    </>
   );
 }

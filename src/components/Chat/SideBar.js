@@ -9,20 +9,28 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import UserListItem from "./UserListItem";
 import { createChatAction } from "../../Redux/Slices/chat/ChatSlice";
+import axios from "axios";
+import { baseUrl } from "../../utils/baseUrl";
 
 const formSchema = Yup.object({
   data: Yup.string().required("Description is required"),
 });
 
-export default function Example({ open, setOpen,setSelectedChat }) {
+export default function Example({
+  open,
+  setOpen,
+  setSelectedChat,
+  setChats,
+  chats,
+}) {
   const dispatch = useDispatch();
 
   const state = useSelector((state) => state?.users);
   const { loading, appErr, serverErr, serchUser } = state;
 
   const chatlist = useSelector((state) => state?.chat);
-  const { createChat,isCreated } = chatlist;
-  
+  const { createChat, isCreated } = chatlist;
+
   const formik = useFormik({
     initialValues: {
       data: "",
@@ -35,12 +43,38 @@ export default function Example({ open, setOpen,setSelectedChat }) {
   });
 
   const accessChat = (userId) => {
-    dispatch(createChatAction(userId))
-    setOpen(false)
+    createChatAction(userId);
+    setOpen(false);
   };
 
-  isCreated || createChat && setSelectedChat(createChat)
-  
+  // isCreated || (createChat && setSelectedChat(createChat));
+
+  const user = useSelector((state) => state?.users);
+  const token = user?.userAuth?.token;
+
+  const createChatAction = async (userId) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const { data } = await axios.post(
+        `${baseUrl}/api/chat`,
+        { userId },
+        config
+      );
+
+      setSelectedChat(data);
+
+      if (!chats.find((c) => c?._id === data?._id)){
+
+        setChats([data, ...chats]);
+      }
+    } catch (error) {
+
+    }
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -138,7 +172,6 @@ export default function Example({ open, setOpen,setSelectedChat }) {
                           key={user._id}
                           user={user}
                           handleFunction={() => accessChat(user?._id)}
-                          
                         />
                       ))}
                     </div>

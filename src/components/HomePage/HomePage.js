@@ -3,6 +3,7 @@ import poster from "../../img/blog_banner.png";
 import Cards from "./Cards";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchfollowingUserPosts, fetchPostAction } from "../../Redux/Slices/posts/postSlice";
+import { Link } from "react-router-dom";
 
 // import { ReactComponent as ReactLogo } from "./airbnb-brands.svg";
 
@@ -48,9 +49,9 @@ const HomePage = () => {
               on the following topics to share our thoughts and learn from your
               experiences : -
             </p>
-            <button className="bg-gradient-to-r from-pink-600 to-orange-600 py-3 px-6 text-lg rounded-md w-48">
-              Try hosting
-            </button>
+            <Link to="/create-post" className="text-center text-2xl font-medium bg-gradient-to-r from-pink-600 to-orange-600 py-3 px-6 rounded-md w-48">
+            Create
+            </Link>
           </div>
         </div>
       </div>

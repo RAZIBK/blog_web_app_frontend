@@ -45,7 +45,6 @@ export const loginUserAction = createAsyncThunk(
         userDate,
         config
       );
-
       localStorage.setItem("userInfo", JSON.stringify(data));
       return data;
     } catch (error) {
@@ -329,7 +328,7 @@ const userSlices = createSlice({
     });
     builder.addCase(registerUserAction.fulfilled, (state, action) => {
       state.loading = false;
-      state.userAuth = action?.payload;
+      state.register = action?.payload;
       state.appErr = undefined;
       state.serverErr = undefined;
     });

@@ -16,7 +16,7 @@ const UsersList = () => {
   }, [dispatch, fetchAllUsers, blockedUser, unBLockedUser]);
 
   return (
-    <>
+    <> 
       <div className=" mt-8 py-8 px-20  min-h-screen">
         {/* <section class="py-8 px-20 bg-gray-50 min-h-screen"> */}
 
@@ -25,8 +25,8 @@ const UsersList = () => {
             <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"></tr>
           </thead>
           <tbody>
-            {allUsers?.map((user) => (
-              <UsersListItem user={user}  />
+            {allUsers?.map((user,index) => (
+              <UsersListItem key={user._id} user={user}  />
             ))}
           </tbody>
         </table>

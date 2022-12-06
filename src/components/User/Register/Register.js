@@ -33,8 +33,8 @@ function Register() {
 
     const storeData=useSelector(store =>store.users);
     console.log(storeData);
-    const {loading,appErr,serverErr,userAuth}=storeData
-    if(userAuth){
+    const {loading,appErr,serverErr,register}=storeData
+    if(register){
         return   <Navigate to="/login" />;
     }
   return (

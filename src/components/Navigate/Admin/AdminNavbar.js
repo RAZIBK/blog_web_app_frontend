@@ -35,7 +35,7 @@ const AdminNavbar = ({ isLogin }) => {
   const { notification } = ChatState();
   const userNavigation = [
     { name: "Your Profile", href: `/profile/${isLogin?._id}` },
-    { name: "Change your password", href: "/update-password" },
+    // { name: "Change your password", href: "/update-password" },
   ];
 
   return (
@@ -59,7 +59,7 @@ const AdminNavbar = ({ isLogin }) => {
                 <div className="flex-shrink-0  relative mr-4 inline-flex items-center px-2   border border-transparent  text-sm font-medium rounded-md text-white border-gray-200 h-10 mt-3 ">
                   {/* Logo */}
                   <BookOpenIcon className="h-10 w-10 text-gray-200" />
-                  <span className="ml-3 text-gray-100">Hi  Admin</span>
+                  <span className="ml-3 text-gray-100">Hi Admin</span>
                 </div>
                 <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
                   {navigation.map((item) => (
@@ -84,7 +84,6 @@ const AdminNavbar = ({ isLogin }) => {
                     aria-current="page"
                   >
                     Chat{" "}
-                    
                     {notification.length > 0 ? (
                       <span class="inline-block py-1 px-1.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-green-600 text-white rounded ">
                         {notification.length}
@@ -198,8 +197,23 @@ const AdminNavbar = ({ isLogin }) => {
                   {item.name}
                 </Link>
               ))}
+              <a
+                key="Chat"
+                href="/chat"
+                className={classNames(
+                  "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                )}
+                aria-current="page"
+              >
+                Chat{" "}
+                {notification.length > 0 ? (
+                  <span class="inline-block py-1 px-1.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-green-600 text-white rounded ">
+                    {notification.length}
+                  </span>
+                ) : null}
+              </a>
             </div>
-            <div className="pt-4 pb-3 border-t border-gray-700">
+            <div className="pt-4 pb-3 border-t border-wh">
               <div className="flex items-center px-5 sm:px-6">
                 <div className="flex-shrink-0">
                   {/* Image */}
@@ -217,12 +231,11 @@ const AdminNavbar = ({ isLogin }) => {
                     {isLogin.email}
                   </div>
                 </div>
-                <button className="ml-auto flex-shrink-0 bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
+               
               </div>
+            
               <div className="mt-3 px-2 space-y-1 sm:px-3">
+                
                 {userNavigation.map((item) => (
                   <a
                     key={item.name}
@@ -232,6 +245,13 @@ const AdminNavbar = ({ isLogin }) => {
                     {item.name}
                   </a>
                 ))}
+                <div
+                  onClick={() => dispatch(logoutUserAction())}
+                  type="button"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+                >
+                  <span> Logout</span>
+                </div>
               </div>
             </div>
           </Disclosure.Panel>

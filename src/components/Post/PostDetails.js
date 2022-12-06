@@ -49,7 +49,7 @@ const PostDetails = () => {
                         <div className="inline-flex  mb-5 items-center">
                           <img
                             className="mr-5 w-20 lg:w-20 h-20 lg:h-20 rounded-full"
-                            src="https://cdn.pixabay.com/photo/2021/02/24/23/43/boy-6047786_960_720.jpg"
+                            src={PostDetails?.user?.profilePhoto}
                             alt=""
                           />
                           <div className="text-left">

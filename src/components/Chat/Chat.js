@@ -75,7 +75,16 @@ import io from "socket.io-client";
 import { ChatState } from "../../context/ChatContext";
 import { getSender, getSenderFull } from "./ChatLoagic";
 
-const ENDPOINT = "http://localhost:5000";
+
+
+
+// const ENDPOINT = "https://roughnote.herokuapp.com";
+// const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://odd-lime-walkingstick-gown.cyclic.app";
+
+
+
+
 let socket, selectedChatCompare;
 
 const formSchema = Yup.object({
@@ -112,7 +121,7 @@ export default function Chat() {
     // socket.emit('join chat',selectedChat?._id)
     selectedChatCompare = selectedChat;
   }, [selectedChat]);
-  console.log(notification, "....");
+
 
   useEffect(() => {
     userSeting();
@@ -153,10 +162,12 @@ export default function Chat() {
       },
     };
     try {
+   
       const { data } = await axios.get(`${baseUrl}/api/chat`, config);
+   
       setChats(data);
     } catch (error) {
-      console.log(error);
+   
     }
   };
   const sentData = async (value) => {
@@ -175,7 +186,7 @@ export default function Chat() {
       socket.emit("new message", data);
       setMessage([...message, data]);
     } catch (error) {
-      console.log(error);
+  
     }
   };
   const allMessages = async (id) => {
@@ -192,7 +203,7 @@ export default function Chat() {
       socket.emit("join chat", selectedChat._id);
       setMessage(data);
     } catch (error) {
-      console.log(error);
+
     }
   };
 
@@ -236,10 +247,7 @@ export default function Chat() {
   //   sentedMessage(e.target.value)
   // }
 
-  if (chats > 0 || createChat) {
-    if (!chats.find((c) => c?._id === createChat?._id))
-      setChats([createChat, ...chats]);
-  }
+
 
   const serachHandler = () => {
     //sh
@@ -252,11 +260,15 @@ export default function Chat() {
           .toLowerCase()
           .includes(searchTerm.toLowerCase());
       });
+
       setSearchResult(newSearchResult);
     } else {
+
       setSearchResult(chats);
     }
   };
+
+ 
 
   return (
     <div className="bg-gray-50 pt-8 pb-6">
@@ -277,6 +289,8 @@ export default function Chat() {
                 open={open}
                 setOpen={setOpen}
                 setSelectedChat={setSelectedChat}
+                setChats={setChats}
+                chats={chats}
               ></SideBar>
             </div>
 
@@ -290,7 +304,7 @@ export default function Chat() {
                 <img
                   className="   rounded-full"
                   src={
-                    getSenderFull(userAuth, selectedChat?.users).profilePhoto
+                    getSenderFull(userAuth, selectedChat?.users)?.profilePhoto
                   }
                 />
                 {selectedChat?.name}
@@ -312,9 +326,9 @@ export default function Chat() {
 
               {/* {chats?( */}
               <div>
-                {searchTerm.length < 1 ? (
+                {searchTerm.length <= 0 ? (
                   <div>
-                    {chats?.map((chat) => (
+                    {chats && chats?.map((chat) => (
                       <div
                         onClick={() => {
                           setSelectedChat(chat);
@@ -334,9 +348,9 @@ export default function Chat() {
                         }
                       >
                         <GetSenter
-                          key={chat._id}
+                          key={chat?._id}
                           logedUser={userAuth}
-                          users={chat.users}
+                          users={chat?.users}
                           setsenter={setsenter}
                           senter={senter}
 

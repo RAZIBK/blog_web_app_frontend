@@ -78,7 +78,7 @@ export default function CommentsList({ id }) {
                     />
                     <div className="flex-1 space-y-1">
                       <div className="flex items-center justify-between">
-                        <Link to={`/profile/${comment?.user?._id}`}>
+                        <Link to={`/profile/${comment?.userId?._id}`}>
                         <h3 className="text-sm font-medium text-gray-900">
                           {comment?.userId?.name}
                         </h3>

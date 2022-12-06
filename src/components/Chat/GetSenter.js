@@ -18,21 +18,24 @@ export default function GetSenter({ logedUser, users, senter, setsenter }) {
     }
   });
 
+  
+
+
   return (
     <div>
       {users[0]?._id === logedUser?._id ? (
         <div class="flex flex-row py-4 px-2  justify-center items-center border-b-2">
           <div class="w-1/4">
             <img
-              src={users[1].profilePhoto}
+              src={users[1]?.profilePhoto}
               class="object-cover h-12 w-12 rounded-full"
               alt=""
             />
           </div>
           <div class="w-full ml-3">
             <div class="text-lg font-semibold">
-              {users[1].name}{" "}
-              {senter.includes(users[1]._id) ? (
+              {users[1]?.name}{" "}
+              {senter.includes(users[1]?._id) ? (
                 <span class="inline-block text-xs py-1 px-1.5 leading-none text-center whitespace-nowrap align-baseline font-thin bg-green-600 text-white rounded ">
                   New
                 </span>
@@ -45,15 +48,15 @@ export default function GetSenter({ logedUser, users, senter, setsenter }) {
         <div class="flex flex-row py-4 px-2 justify-center items-center border-b-2">
           <div class="w-1/4">
             <img
-              src={users[0].profilePhoto}
+              src={users[0]?.profilePhoto}
               class="object-cover h-12 w-12 rounded-full"
               alt=""
             />
           </div>
           <div class="w-full ml-3">
             <div class="text-lg font-semibold">
-              {users[0].name}{" "}
-              {senter.includes(users[0]._id) ? (
+              {users[0]?.name}{" "}
+              {senter.includes(users[0]?._id) ? (
                 <span class="inline-block text-xs py-1 px-1.5 leading-none text-center whitespace-nowrap align-baseline font-thin bg-green-600 text-white rounded ">
                   New
                 </span>

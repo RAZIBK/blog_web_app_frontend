@@ -21,7 +21,7 @@ const navigation = [
   { name: "Home", href: "/", current: true },
   // { name: "Create", href: "/create-post", current: false },
   { name: "Posts", href: "/posts", current: false },
-  { name: "Authors", href: "/users", current: false },
+  // { name: "Authors", href: "/users", current: false },
 ];
 
 function classNames(...classes) {
@@ -33,7 +33,7 @@ const PrivateNavbar = ({ isLogin }) => {
 
   const userNavigation = [
     { name: "Your Profile", href: `/profile/${isLogin?._id}` },
-    { name: "Change your password", href: "/update-password" },
+    // { name: "Change your password", href: "/update-password" },
   ];
   const dispatch = useDispatch();
   return (
@@ -192,6 +192,23 @@ const PrivateNavbar = ({ isLogin }) => {
                   {item.name}
                 </a>
               ))}
+              <a
+                    key="Chat"
+                    href="/chat"
+                    className={classNames(
+    
+                        "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    )}
+                    aria-current="page"
+                  >
+                    Chat{" "}
+                    
+                    {notification.length > 0 ? (
+                      <span class="inline-block py-1 px-1.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-green-600 text-white rounded ">
+                        {notification.length}
+                      </span>
+                    ) : null}
+                  </a>
             </div>
             {/* Mobile */}
             <div className="pt-4 pb-3 border-t border-gray-700">
@@ -211,10 +228,7 @@ const PrivateNavbar = ({ isLogin }) => {
                     {isLogin?.email}
                   </div>
                 </div>
-                <button className="ml-auto flex-shrink-0 bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
+              
               </div>
               <div className="mt-3 px-2 space-y-1 sm:px-3">
                 {userNavigation.map((item) => (
@@ -226,8 +240,18 @@ const PrivateNavbar = ({ isLogin }) => {
                     {item.name}
                   </a>
                 ))}
+                
               </div>
+              <div
+                    onClick={() => dispatch(logoutUserAction())}
+                    type="button"
+                    className="block px-5 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+                  >
+                    
+                    <span> Logout</span>
+                  </div>
             </div>
+            
           </Disclosure.Panel>
         </>
       )}

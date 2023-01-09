@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+#  Blog webapp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of contents
 
-## Available Scripts
+- [Introduction](#introduction)
+- [Demo](#demo)
+- [Run](#run)
+- [Technology](#technology)
+- [Features](#features)
+- [License](#license)
 
-In the project directory, you can run:
+## Introduction
 
-### `npm start`
+It’s a complete blog application where people share their technical knowledge and it is a stage for people to discuss about modern technologies. using Node js, Express js, and MongoDb.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+NOTE: Please read the RUN section before opening an issue.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The application is deployed to Vercel and can be accessed through the following link:
 
-### `npm test`
+[blogwebapp.vercel.app on Vercel](https://blogwebapp.vercel.app)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In order to access the admin panel on "/admin" you need to provide the admin email and password.
 
-### `npm run build`
+## Demo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![screenshot](https://github.com/RAZIBK/blog_web_app_frontend/blob/main/Screenshot_20230109_102219.png)
+![screenshot](https://github.com/RAZIBK/blog_web_app_frontend/blob/main/Screenshot_20230109_102252.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Run
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Intsall node modules using  `npm install`
 
-### `npm run eject`
+Now you can run `npm start` in the terminal and the application should work.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Technology
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The application is built with:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+React.js
+TailwindCss
+Redux toolkit
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Deployed in Vercel
 
-## Learn More
+## Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Modules can do the following:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- User authentication using JWT and password.
+- Users can create and edit posts .
+- Users can like and unlike posts created by other users.
+- Users can comment on posts created by other users.
+- Users can follow and unfollow other users.
+- Users can chat with other users.
+- Admin can view and manage users.
+- Admin can view and manage posts.
+- Admin can view and manage category.
 
-### Code Splitting
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+[![License](https://img.shields.io/:License-MIT-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- MIT License
+- Copyright 2022 © [Muhammed Razi B K](https://github.com/RAZIBK/)

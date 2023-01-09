@@ -11,9 +11,9 @@
 
 ## Introduction
 
-It’s a complete blog application where people share their technical knowledge and it is a stage for people to discuss about modern technologies. using Node js, Express js, and MongoDb.
+It’s a complete blog application where people share their technical knowledge and it is a stage for people to discuss about modern technologies. Using React.js
+TailwindCss Redux toolkit
 
-NOTE: Please read the RUN section before opening an issue.
 
 The application is deployed to Vercel and can be accessed through the following link:
 

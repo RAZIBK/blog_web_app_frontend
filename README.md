@@ -44,6 +44,8 @@ Deployed in Vercel
 
 ## Features
 
+It’s a complete blog application where people share their technical knowlodge and it is a stage for people to discuss about modern technologies..
+
 Modules can do the following:
 
 - User authentication using JWT and password.
